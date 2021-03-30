@@ -16,5 +16,5 @@ public interface Api {
 
 
     @GET("packages/storage/uplink_message")
-    Call<ResponseBody> getCensorData(@Query("limit") int limit, @Query("after") String after, @Query("field_mask") String field_mask);
+    Call<ResponseBody> getCensorData(@Query("limit") int limit, @Query("order") String order, @Query("field_mask") String field_mask);
 }
