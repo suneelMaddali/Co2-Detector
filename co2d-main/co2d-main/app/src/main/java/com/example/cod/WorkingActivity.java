@@ -67,12 +67,11 @@ public class WorkingActivity extends AppCompatActivity {
 
 
     private void getHeroes() {
-        // minus 5 minutes
-        String afterTime = Utils.getInstance().getTheTimeNow(24L * 60L * 60L);
+        // String afterTime = Utils.getInstance().getTheTimeNow(24L * 60L * 60L);
 
-        call = RetrofitClient.getInstance().getMyApi().getCensorData(25, afterTime, "up.uplink_message.decoded_payload");
+        call = RetrofitClient.getInstance().getMyApi().getCensorData(25, "-received_at", "up.uplink_message.decoded_payload");
         Log.d("RESPONSE", "CALLING API RESPONSE");
-        Log.d("RESPONSE", "TIME NOW IS " + afterTime);
+        
         call.clone().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
