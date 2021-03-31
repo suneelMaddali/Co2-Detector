@@ -37,6 +37,8 @@ public class WorkingActivity extends AppCompatActivity {
     TextView textView2, textView4;
     Call<ResponseBody> call;
     Timer updateCo2Timer;
+    Uri alarmRingtone;
+    Ringtone ringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,9 +127,9 @@ public class WorkingActivity extends AppCompatActivity {
     //call this method for rining the alaram sound when co2 levels are reached...
     void ringAlarm() {
         Toast.makeText(getApplicationContext(), "DANGER", Toast.LENGTH_LONG).show();
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-        r.play();
+        alarmRingtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        ringtone = RingtoneManager.getRingtone(getApplicationContext(), alarmRingtone);
+        ringtone.play();
     }
 
     @Override
@@ -142,6 +144,7 @@ public class WorkingActivity extends AppCompatActivity {
         super.onStop();
 
         updateCo2Timer.cancel();
+        ringtone.stop();
     }
 
     @Override
